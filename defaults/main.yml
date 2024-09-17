@@ -10,6 +10,18 @@ i2_manage_epel: true
 i2_remove_unmanaged_features: false
 i2_confd:
   - "conf.d"
+i2_custom_dirs:
+  - "firewalls.d"
+  - "pki.d" 
+  - "routers.d"
+  - "servers.d"
+  - "switches.d"
+  - "vpns.d" 
+  - "disabled-firewalls.d"
+  - "disabled-routers.d"
+  - "disabled-servers.d"
+  - "disabled-switches.d"
+  - "disabled-vpns.d"                  
 i2_include_plugins:
   - "itl"
   - "plugins"

@@ -73,3 +73,12 @@
   notify: reload icinga2
   when: i2_zones is defined
 
+- name: Manage Icinga 2 notifications
+  become: yes
+  template:
+    src: "quiesced-notifications.conf"
+    dest: "{{ i2_conf_dir }}/quiesced-notifications.conf"
+    owner: "{{ i2_user }}"
+    group: "{{ i2_group }}"
+    mode: 0644
+  when: host.vars.notification_interval is defined

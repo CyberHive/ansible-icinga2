@@ -6,12 +6,12 @@
     - config
 
 - name: include icinga2.yml
-  include: icinga2.yml
+  include_tasks: icinga2.yml
   tags:
     - install
 
 - name: include icinga2-config.yml
-  include: icinga2-config.yml
+  include_tasks: icinga2-config.yml
   tags:
     - config
 
@@ -20,6 +20,16 @@
   when: i2_features|flatten|length > 0
   tags:
     - feature-handler
+
+- name: Create custom config directories
+  ansible.builtin.file:
+    path: "/etc/icinga2/{{ item }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  loop: "{{ i2_custom_dirs }}"
+  tags:
+    - config
 
 - name: Make sure Icinga 2 is started
   service:

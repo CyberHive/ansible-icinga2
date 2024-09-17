@@ -46,3 +46,10 @@ include "features-enabled/*.conf"
 {% for include_dir in i2_confd %}
 include_recursive "{{ include_dir }}"
 {% endfor %}
+
+/**
+* Also include customer config directories at the root of /etc/icinga2
+*/
+{% for include_dir in i2_custom_dirs %}
+include_recursive "{{ include_dir }}"
+{% endfor %}
